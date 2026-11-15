@@ -39,7 +39,8 @@ Surgical-repair documentation for the `janjez-socio` build (Next.js 16 + Supabas
 - `infrastructure/5-build-pipeline.md` — build / postbuild / CI / PM2.
 - `infrastructure/10-security-invariants.md` — 12 security invariants.
 - `infrastructure/11-deployment.md` — env vars, M-Pesa, DNS, targets.
-- `infrastructure/12-prisma-migration-note.md` — explicit "no Prisma" finding.
+- `infrastructure/12-prisma-migration-note.md` — Prisma migration spec (future DB target).
+- `infrastructure/14-branch-strategy.md` — branches, CI gates, deploy/rollback.
 
 ### API
 - `api/8-route-index.md` — every route with its auth model.

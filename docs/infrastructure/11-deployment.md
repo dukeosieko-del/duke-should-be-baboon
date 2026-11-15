@@ -82,6 +82,28 @@ The authoritative schema is `docs/infrastructure/4-supabase-provider.md` §Schem
 (cron). Steps: `npm ci` → `npm run test:run` → `npx tsc --noEmit` →
 `npm run lint` → `npm run build`.
 
+## Future DB deployment target: Prisma
+
+**Directive (2026-11-15): all future database deployments must target Prisma.**
+
+This is a forward-looking directive. The current production path is the Supabase
+raw-SQL layer (30 migrations + 4 client variants). Prisma is the approved
+future state and is **not yet implemented**.
+
+Deployment flow when Prisma is adopted:
+```bash
+npx prisma migrate deploy      # applies prisma/migrations/ to the DB
+npm run build                  # Next.js build
+npm run postbuild              # standalone packaging
+pm2 restart janjez-app         # or `next start` via PM2
+```
+Until then, DB changes are applied by running the Supabase SQL migrations
+manually in the Supabase dashboard SQL Editor.
+
+See `docs/infrastructure/12-prisma-migration-note.md` for the full migration
+spec, including what is explicitly NOT changed (Supabase Auth, Realtime,
+Storage, M-Pesa, DripFeedPanel, Brevo, Business Side HMAC).
+
 ## Rationale
 - **Standalone output + `postbuild`** is the only path that works on EC2/PM2.
 - **`next start --hostname 0.0.0.0`** is required for PM2 in a container.

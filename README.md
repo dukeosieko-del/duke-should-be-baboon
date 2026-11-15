@@ -48,7 +48,10 @@ Each document follows the same contract:
 
 ## DB provider note (explicit)
 
-**There is no Prisma in this codebase, and there never was.**
+**Current state:** there is no Prisma in this codebase, and there never was.
+**Future state (directive, 2026-11-15): all future DB deployments must target
+Prisma.** See `docs/infrastructure/12-prisma-migration-note.md` for the migration
+spec. Until that migration is executed, the Supabase raw-SQL layer is production.
 
 - `grep -ri prisma` across the repo, `ez-business-side`, and `janjez-business-worktree`
   returns **zero** matches outside of unrelated build artifacts (`.tsbuildinfo`).
